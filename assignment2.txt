@@ -1,0 +1,26 @@
+def neville (x_points, y_points, x):
+    first = (((x-x_points[0])*y_points[1])-((x-x_points[1])*y_points[0]))/(x_points[1]-x_points[0])
+    second = (((x-x_points[1])*y_points[2])-((x-x_points[2])*y_points[1]))/(x_points[2]-x_points[1])
+    final = (((x-x_points[0])*second)-((x-x_points[2])*first))/(x_points[2]-x_points[0])
+    return final
+
+neville([3.6,3.8,3.9], [1.675,1.436,1.318], 3.7)
+
+def newton(x, y):
+    first = (y[1]-y[0])/(x[1]-x[0])
+    eqa =(y[2]-y[1])/(x[2]-x[1])
+    second = (eqa - first) / (x[2]-x[0])
+    eqb = (((y[3]-y[2])/(x[3]-x[2]))-eqa)/(x[3]-x[1])
+    third=(eqb-second)/(x[3]-x[0])
+    return ([first, second, third])
+
+newton([7.2,7.4,7.5,7.6],[23.5492,25.3913,26.8224,27.4589])
+
+def cont(x,y):
+    array = newton([7.2,7.4,7.5,7.6],[23.5492,25.3913,26.8224,27.4589])
+    first = y[0] + (array[0]*(7.3-x[0]))
+    second = first + (array[1]*(7.3-x[0])*(7.3-x[1]))
+    final = second + (array[2]*(7.3-x[0])*(7.3-x[1])*(7.3-x[2]))
+    return final
+
+cont([7.2,7.4,7.5,7.6],[23.5492,25.3913,26.8224,27.4589])
